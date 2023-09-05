@@ -1,0 +1,51 @@
+文件读写
+内置函数 open()
+file=open(filepath&name,[rwmode,encoding)  默认为gbk编码
+
+常用的文件打开方式：
+r  :  只读模式打开文件，文件指针在开头
+w  : 只写模式打开文件，不存在则创建。文件存在则覆盖有内容，文件指针在开头
+a : 追加模式打开文件，不存在则创建，指针在开头。存在则在文件末尾追加，指针也在末尾
+b : 以二进制方式打开文件，不能单独使用， 一般 rb wb
++ ：读写模式，不能单独使用，长和a 使用  a+
+
+常用的文件处理函数，文件对象的常用方法
+read(size),从文件中读取size个字节或字符内容并返回，缺省默认为读取整个文件
+readline()，读取文件一行内容
+readlibes() ,将文件的每一行作为一个独立的字符串，并且返回一个包含所有行的字符串的列表
+write(str) 将字符串str写入文本
+writelines(str_list)   将字符串列表写入文件对象且不添加换行符
+seek(offset[,wence] offset为相对于whence的位置。offset 为正 往末尾方向移动，为负则为开始方向
+whence:
+0 : 从文件开头计算 默认为0
+1 ：当前位置
+2 ： 文件结尾
+
+tell() 返回文件指针的位置
+flush()  将缓冲区的内容写入文件，但不关闭
+close()  关闭流，同时释放文件对象的资源
+
+with 语句 上下文管理器
+可以自动管理上下文资源，不论什么原因跳出with资源快，都能确保文件正确的关闭，以此来释放资源
+能自动关闭管道，释放资源对象-
+
+os模块  -python内置的与操作系统和文件系统相关的模块，在不同的操作系统上执行，结果可能不一致
+listdir 列出路径下的所有文件和目录
+mkdir makedirs
+rmdir removedirs
+chdir
+
+os os.path 模块用于对目录或者文件操作
+abspath （'文件名'） 获取文件的绝对路径
+exists('文件名')  判断文件是否存在 返回bool
+join(path,name)  将目录与文件 拼接
+spilt(）将路径与文件分开  a/b/c.py  -> a/b/  c.py
+spiltext() 将文件与其扩展名分开
+basename  获取绝对路径下的文件名
+dirname 获取该文件的绝对路径 但不包含该文件名
+
+os.walk(path)
+将传入的path对象生成一个迭代器，总共包含三个对象  dirpath  dirname  filename
+即当前目录路径或者子目录路径
+当前子目录列表
+当前目录下的所有文件  类似于Linux 命令  tree
