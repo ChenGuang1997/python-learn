@@ -15,11 +15,20 @@ readline()，读取文件一行内容
 readlibes() ,将文件的每一行作为一个独立的字符串，并且返回一个包含所有行的字符串的列表
 write(str) 将字符串str写入文本
 writelines(str_list)   将字符串列表写入文件对象且不添加换行符
-seek(offset[,wence] offset为相对于whence的位置。offset 为正 往末尾方向移动，为负则为开始方向
+seek(offset[,whence] offset为相对于whence的位置。offset 为正 往末尾方向移动，为负则为开始方向 #
 whence:
 0 : 从文件开头计算 默认为0
 1 ：当前位置
 2 ： 文件结尾
+
+出现io.UnsupportedOperation: can't do nonzero end-relative seeks 这个错误，
+主要是因为在python3和python2的问题，如果该程序在Python2中是不会报错，
+Python3则会报错。因为Pyhon3在文本文件中，没有使用b模式选项打开的文件，只允许从文件头开始计算相对位置，
+从文件尾计算时就会引发异常
+在开始使用open打开文件时候，将打开方式从r，换成rb即可
+即：f = open("test.txt","rb") 如果使用seek，这里必须使用rb
+其中打开文件的路径支持绝对路径和相对路径两种
+
 
 tell() 返回文件指针的位置
 flush()  将缓冲区的内容写入文件，但不关闭

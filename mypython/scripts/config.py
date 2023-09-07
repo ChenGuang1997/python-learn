@@ -11,3 +11,5 @@ dname_list=[
 'www.pathologycn.com',
 '*.ai.pathologycn.com',
 ]
+import ranmompasswd
+print(ranmompasswd.getpasswd(20))
